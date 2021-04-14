@@ -3,45 +3,45 @@ import java.util.*;
 
 public class MainWorker {
 
+	static Scanner uI = new Scanner (System.in);
+	static int [] bases = new int [8];
+	static int [] currents = new int [8];
+	
 	public static void main(String[]args)
 	{
 		readFromFile();
+		work(0);
+	}
+	private static void work(int num) {
+		
+		if(num ==9)
+		{
+			result();
+		}
+		else
+		{
+		int cur = currents[num];
+		
+		work(num++);
+		}
+	}
+	private static void result() {
+		// TODO Auto-generated method stub
+		System.exit(0);
 	}
 	public static void readFromFile()
 	{
-		 // The name of the file to open.
-        String fileName = "BaseStorage";
-
-        // This will reference one line at a time
-        String line = null;
-
-        try 
-        	{
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader = new FileReader(fileName);
-
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader = 
-                new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) 
-            	{
-                System.out.println(line);
-            	}	
-
-            // Always close files.
-            bufferedReader.close();			
-        	}
-        catch(FileNotFoundException ex) 
-        	{
-            System.out.println(
-                "Unable to open file '" + fileName + "'");				
-        	}
-        catch(IOException ex) 
-        	{
-            System.out.println(
-                "Error reading file '" + fileName + "'");					
-            // Or we could just do this: ex.printStackTrace();
-        	}
+		 try {
+			final Scanner file = new Scanner( new File( "BaseStorage" ) );
+			for (int i = 0; i < 8; i++)
+			 {
+				 bases [i] = file.nextInt();
+			 }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 
 	}
 }
